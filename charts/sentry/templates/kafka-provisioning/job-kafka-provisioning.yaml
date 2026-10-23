@@ -52,9 +52,10 @@ spec:
 {{ toYaml .Values.global.tolerations | indent 8 }}
       {{- end }}
       initContainers:
+        {{- $waitForKafkaImage := default (dict) (default (dict) $provisioning.waitForKafka).image }}
         - name: wait-for-kafka
-          image: busybox:1.36
-          imagePullPolicy: IfNotPresent
+          image: "{{ template "kafkaProvisioning.waitForKafka.image" . }}"
+          imagePullPolicy: {{ default "IfNotPresent" $waitForKafkaImage.pullPolicy }}
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:

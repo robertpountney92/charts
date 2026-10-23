@@ -133,6 +133,27 @@ startupProbe:
 {{- default "1.36" $image.tag -}}
 {{- end -}}
 
+{{- define "kafkaProvisioning.waitForKafka.image" -}}
+{{- $waitForKafka := default (dict) .Values.externalKafka.provisioning.waitForKafka -}}
+{{- $image := default (dict) $waitForKafka.image -}}
+{{- default "busybox" $image.repository -}}
+:
+{{- default "1.36" $image.tag -}}
+{{- end -}}
+
+{{- define "geodata.initImage" -}}
+{{- $image := default (dict) .Values.geodata.initImage -}}
+{{- default "busybox" $image.repository -}}
+{{- with $image.tag }}:{{ . }}{{- end -}}
+{{- end -}}
+
+{{- define "geodata.image" -}}
+{{- $image := default (dict) .Values.geodata.image -}}
+{{- default "ghcr.io/maxmind/geoipupdate" $image.repository -}}
+:
+{{- default "v7.0.1" $image.tag -}}
+{{- end -}}
+
 {{- define "vroom.image" -}}
 {{- default "ghcr.io/getsentry/vroom" .Values.images.vroom.repository -}}
 :

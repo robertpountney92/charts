@@ -322,6 +322,12 @@ geodata:
   mountPath: ""  # for example: /usr/share/GeoIP
   # path to the geoip database inside the volumemount
   path: ""  # for example: /usr/share/GeoIP/GeoLite2-City.mmdb
+  # image:
+  #   repository: ghcr.io/maxmind/geoipupdate
+  #   tag: "v7.0.1"
+  # initImage:
+  #   repository: busybox
+  #   tag: ""
 
 sentry:
   # to not generate a sentry-secret, use these 2 values to reference an existing secret
@@ -3045,6 +3051,11 @@ externalKafka:
   ## When enabled, creates a Job that provisions Kafka topics
   provisioning:
     enabled: false
+    # waitForKafka:
+    #   image:
+    #     repository: busybox
+    #     tag: "1.36"
+    #     pullPolicy: IfNotPresent
     ## topicctl: uses segmentio/topicctl for declarative topic management
     topicctl:
       image:

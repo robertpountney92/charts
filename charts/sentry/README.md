@@ -85,6 +85,9 @@ Note: this table is incomplete, so have a look at the values.yaml in case you mi
 | externalKafka.port | int | `9092` | Port for external Kafka |
 | externalKafka.compression.type | string | `""` | Compression type for Kafka messages ('gzip', 'snappy', 'lz4', 'zstd') |
 | externalKafka.message.max.bytes | int | `50000000` | Maximum message size for Kafka |
+| externalKafka.provisioning.waitForKafka.image.pullPolicy | string | `"IfNotPresent"` |  |
+| externalKafka.provisioning.waitForKafka.image.repository | string | `"busybox"` |  |
+| externalKafka.provisioning.waitForKafka.image.tag | string | `"1.36"` |  |
 | externalKafka.sasl.mechanism | string | `"None"` | SASL mechanism for Kafka (PLAIN, SCRAM-256, SCRAM-512) |
 | externalKafka.sasl.username | string | `"None"` | SASL username for Kafka |
 | externalKafka.sasl.password | string | `"None"` | SASL password for Kafka |
@@ -143,6 +146,10 @@ Note: this table is incomplete, so have a look at the values.yaml in case you mi
 | geodata.accountID | string | `""` |  |
 | geodata.editionIDs | string | `""` |  |
 | geodata.existingSecret | string | `""` | Name of an externally-managed Secret holding the GeoIP credentials. If unset, the chart generates and manages this Secret itself. The Secret must contain the keys `GEOIPUPDATE_ACCOUNT_ID`, `GEOIPUPDATE_LICENSE_KEY` and `GEOIPUPDATE_EDITION_IDS`, which are loaded with `envFrom` and therefore cannot be renamed. If set, `accountID`, `licenseKey` and `editionIDs` above are ignored and the chart-managed Secret is not created. |
+| geodata.image.repository | string | `"ghcr.io/maxmind/geoipupdate"` |  |
+| geodata.image.tag | string | `"v7.0.1"` |  |
+| geodata.initImage.repository | string | `"busybox"` |  |
+| geodata.initImage.tag | string | `""` |  |
 | geodata.licenseKey | string | `""` |  |
 | geodata.mountPath | string | `""` |  |
 | geodata.path | string | `""` |  |
